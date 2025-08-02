@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,145 +8,83 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #fdfbfb, #ebedee);
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
       color: #333;
       overflow-x: hidden;
     }
-
     header {
       text-align: center;
-      padding: 2rem 1rem 1rem;
-      animation: fadeIn 2s ease;
+      padding: 2rem;
+      animation: fadeInDown 1s ease;
     }
-
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      color: #666;
-      margin: 0;
-    }
-
+    h1 {
+  font-size: 2.5rem;
+  color: #3a0ca3;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
     .container {
-      display: flex;
-      flex-direction: column;
+      max-width: 960px;
+      margin: auto;
       padding: 1rem;
-      gap: 1.5rem;
     }
-
-    @media (min-width: 768px) {
-      .container {
-        flex-direction: row;
-        justify-content: space-evenly;
-        align-items: flex-start;
-      }
-    }
-
-    iframe {
+    iframe[src*="https://www.mage.space"] {
       width: 100%;
-      max-width: 400px;
-      height: 300px;
+      height: 480px;
       border: 2px solid #ccc;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 1.5s ease;
+      border-radius: 12px;
+      animation: popUp 0.6s ease;
     }
-
-    .whiteboard {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
     textarea {
       width: 100%;
       height: 150px;
+      margin-top: 1rem;
       padding: 1rem;
       font-size: 1rem;
-      border: 2px solid #ddd;
+      border: 2px dashed #aaa;
       border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      resize: vertical;
+      animation: fadeInUp 1s ease;
     }
-
-    select,
-    button {
-      font-size: 1rem;
-      padding: 0.6rem 1rem;
-      border-radius: 10px;
-      border: none;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: all 0.2s ease;
+    .illustration {
+      text-align: center;
+      margin: 2rem 0;
     }
-
-    button:hover,
-    select:hover {
-      cursor: pointer;
-      transform: scale(1.02);
+    .illustration img {
+      width: 200px;
+      animation: float 3s ease-in-out infinite;
     }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes popUp {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
   </style>
 </head>
-
 <body>
   <header>
     <h1>Brainboom X</h1>
     <p>Where brain meets creativity!</p>
   </header>
-
-  <div class="container">
-    <iframe src="https://www.mage.space" title="Mage Space"></iframe>
-
-    <div class="whiteboard">
-      <label for="instruction">What kind of sentence should you write?</label>
-      <select id="instruction">
-        <option value="simple">Write a simple sentence.</option>
-        <option value="adjective">Use 2 adjectives in your sentence.</option>
-        <option value="preposition">Use 1 preposition in your sentence.</option>
-        <option value="feeling">Write about how the picture makes you feel.</option>
-      </select>
-
-      <button onclick="randomizeInstruction(); playClick()">🎲 Give Me Random Instruction</button>
-      <textarea placeholder="Write your sentence here..."></textarea>
-    </div>
+  <div class="illustration">
+    <img src="https://cdn-icons-png.flaticon.com/512/2949/2949878.png" alt="Brain icon" />
   </div>
-
-  <audio id="clickSound">
-    <source src="https://www.myinstants.com/media/sounds/mouse-click.mp3" type="audio/mpeg" />
-  </audio>
-
-  <script>
-    const instructions = [
-      "Write a simple sentence.",
-      "Use 2 adjectives in your sentence.",
-      "Use 1 preposition in your sentence.",
-      "Write about how the picture makes you feel."
-    ];
-
-    function randomizeInstruction() {
-      const random = Math.floor(Math.random() * instructions.length);
-      document.getElementById("instruction").value =
-        document.getElementById("instruction").options[random].value;
-    }
-
-    function playClick() {
-      document.getElementById("clickSound").play();
-    }
-  </script>
+  <div class="container">
+    <p><strong>Step 1:</strong> Use the image generator below to create a fun picture.</p>
+    <iframe src="https://www.mage.space" title="AI Image Generator"></iframe>
+    <p><strong>Step 2:</strong> Now write a sentence about the image. Try using <em>adjectives</em>, <em>prepositions</em> or <em>feelings</em>!</p>
+    <textarea placeholder="Type your creative sentence here..."></textarea>
+  </div>
 </body>
-
 </html>
