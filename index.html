@@ -13,7 +13,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       height: 100vh;
       margin: 0;
       padding: 20px;
@@ -26,63 +26,127 @@
       animation: fadeInDown 1s ease-out;
     }
 
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    h2 {
+      font-size: 1.2rem;
+      font-weight: normal;
+      color: #444;
+      margin-top: -10px;
+      margin-bottom: 20px;
     }
 
-    input, button {
-      padding: 12px;
-      font-size: 1em;
-      margin: 10px;
-      border-radius: 8px;
-      border: none;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    p.instructions {
+      background-color: #fff8dc;
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+      max-width: 600px;
+      text-align: center;
+      font-size: 1rem;
     }
 
-    button {
-      background-color: #007BFF;
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #0056b3;
+    .container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 20px;
+      width: 100%;
+      max-width: 1200px;
     }
 
     iframe {
-      margin-top: 20px;
-      width: 100%;
-      height: 600px;
+      width: 60%;
+      height: 450px;
       border: none;
       border-radius: 12px;
       box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .writing-area {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      border-radius: 12px;
+      padding: 15px;
+      font-size: 1rem;
+      resize: none;
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    select, button.generate-task {
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background-color: #f5f5f5;
+    }
+
+    button.generate-task {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button.generate-task:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
   <h1>🧠 Brainrot Image Generator</h1>
-  <p>Try the embedded AI image generator below (powered by Mage.space)</p>
+  <h2>Where brain meets creativity!</h2>
 
-  <!-- Embedded Mage.space image generator -->
-  <iframe src="https://www.mage.space" allowfullscreen></iframe>
+  <p class="instructions">Welcome! Look at the picture. Then write a sentence about it! Let’s use words to describe it.</p>
+
+  <div class="container">
+    <!-- Embedded Mage.space image generator -->
+    <iframe src="https://www.mage.space" allowfullscreen></iframe>
+
+    <!-- Writing/whiteboard area -->
+    <div class="writing-area">
+      <label for="taskType">Choose your writing challenge:</label>
+      <select id="taskType">
+        <option value="simple">Make a simple sentence</option>
+        <option value="adjective">Use two adjectives</option>
+        <option value="preposition">Use one preposition</option>
+        <option value="feeling">Describe how it makes you feel</option>
+      </select>
+
+      <button class="generate-task" onclick="randomizeTask()">🎲 Random Task</button>
+
+      <textarea placeholder="Write your sentence here..."></textarea>
+    </div>
+  </div>
 
   <!-- Audio for interaction -->
   <audio id="click-sound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
 
   <script>
-    // Optional interaction hook for future use
+    const clickSound = document.getElementById('click-sound');
+
     document.addEventListener('click', () => {
-      const clickSound = document.getElementById('click-sound');
       clickSound.play();
     });
+
+    function randomizeTask() {
+      const taskTypes = [
+        'Make a simple sentence',
+        'Use two adjectives',
+        'Use one preposition',
+        'Describe how it makes you feel'
+      ];
+      const randomIndex = Math.floor(Math.random() * taskTypes.length);
+      const taskDropdown = document.getElementById('taskType');
+      taskDropdown.selectedIndex = randomIndex;
+    }
   </script>
 </body>
 </html>
