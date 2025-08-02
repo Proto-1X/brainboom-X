@@ -5,46 +5,84 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brainrot Image Generator</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Rubik', sans-serif;
+      background: linear-gradient(to right, #ffe6e6, #e6f2ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
       padding: 20px;
-      text-align: center;
+      overflow-x: hidden;
     }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #333;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     input, button {
-      padding: 10px;
+      padding: 12px;
       font-size: 1em;
       margin: 10px;
+      border-radius: 8px;
+      border: none;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    img {
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    iframe {
       margin-top: 20px;
-      max-width: 100%;
-      height: auto;
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
     }
   </style>
 </head>
 <body>
-  <h1>Brainrot Image Generator</h1>
-  <p>Type your combo (e.g. "Tiger - Mirror - Socks")</p>
-  <input type="text" id="prompt" placeholder="Enter your image prompt...">
-  <button onclick="generateImage()">Generate Image</button>
-  <div id="image-container">
-    <img id="generated-image" src="" alt="Your image will appear here" style="display:none;">
-  </div>
+  <h1>🧠 Brainrot Image Generator</h1>
+  <p>Try the embedded AI image generator below (powered by Mage.space)</p>
+
+  <!-- Embedded Mage.space image generator -->
+  <iframe src="https://www.mage.space" allowfullscreen></iframe>
+
+  <!-- Audio for interaction -->
+  <audio id="click-sound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
 
   <script>
-    async function generateImage() {
-      const prompt = document.getElementById('prompt').value;
-      const image = document.getElementById('generated-image');
-      const container = document.getElementById('image-container');
-
-      // For now, this will just show a placeholder image
-      // To connect to a real AI image generator like OpenAI, you need an API key and backend
-
-      const placeholderImage = `https://placehold.co/600x400?text=${encodeURIComponent(prompt)}`;
-
-      image.src = placeholderImage;
-      image.style.display = 'block';
-    }
+    // Optional interaction hook for future use
+    document.addEventListener('click', () => {
+      const clickSound = document.getElementById('click-sound');
+      clickSound.play();
+    });
   </script>
 </body>
 </html>
