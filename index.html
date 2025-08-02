@@ -10,7 +10,6 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, #e0eafc, #cfdef3);
       color: #333;
-      overflow-x: hidden;
     }
     header {
       text-align: center;
@@ -18,16 +17,25 @@
       animation: fadeInDown 1s ease;
     }
     h1 {
-  font-size: 2.5rem;
-  color: #3a0ca3;
-  font-weight: 900;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
+      font-size: 2.5rem;
+      color: #3a0ca3;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
     .container {
-      max-width: 960px;
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1200px;
       margin: auto;
+      gap: 1.5rem;
       padding: 1rem;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .left, .right {
+      flex: 1 1 480px;
+      min-width: 300px;
     }
     iframe[src*="https://www.mage.space"] {
       width: 100%;
@@ -38,13 +46,21 @@
     }
     textarea {
       width: 100%;
-      height: 150px;
+      height: 200px;
       margin-top: 1rem;
       padding: 1rem;
       font-size: 1rem;
       border: 2px dashed #aaa;
       border-radius: 10px;
       animation: fadeInUp 1s ease;
+    }
+    select {
+      width: 100%;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 2px solid #888;
+      margin-bottom: 1rem;
     }
     .illustration {
       text-align: center;
@@ -81,10 +97,18 @@
     <img src="https://cdn-icons-png.flaticon.com/512/2949/2949878.png" alt="Brain icon" />
   </div>
   <div class="container">
-    <p><strong>Step 1:</strong> Use the image generator below to create a fun picture.</p>
-    <iframe src="https://www.mage.space" title="AI Image Generator"></iframe>
-    <p><strong>Step 2:</strong> Now write a sentence about the image. Try using <em>adjectives</em>, <em>prepositions</em> or <em>feelings</em>!</p>
-    <textarea placeholder="Type your creative sentence here..."></textarea>
+    <div class="left">
+      <iframe src="https://www.mage.space" title="AI Image Generator"></iframe>
+    </div>
+    <div class="right">
+      <select>
+        <option value="adjective">Write a sentence with 2 adjectives</option>
+        <option value="preposition">Use a preposition to describe location</option>
+        <option value="feeling">Describe what the object feels like</option>
+        <option value="action">Describe what the subject is doing</option>
+      </select>
+      <textarea placeholder="Type your creative sentence here..."></textarea>
+    </div>
   </div>
 </body>
 </html>
