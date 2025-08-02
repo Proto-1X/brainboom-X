@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brainrot Image Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 1em;
+      margin: 10px;
+    }
+    img {
+      margin-top: 20px;
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Brainrot Image Generator</h1>
+  <p>Type your combo (e.g. "Tiger - Mirror - Socks")</p>
+  <input type="text" id="prompt" placeholder="Enter your image prompt...">
+  <button onclick="generateImage()">Generate Image</button>
+  <div id="image-container">
+    <img id="generated-image" src="" alt="Your image will appear here" style="display:none;">
+  </div>
+
+  <script>
+    async function generateImage() {
+      const prompt = document.getElementById('prompt').value;
+      const image = document.getElementById('generated-image');
+      const container = document.getElementById('image-container');
+
+      // For now, this will just show a placeholder image
+      // To connect to a real AI image generator like OpenAI, you need an API key and backend
+
+      const placeholderImage = `https://placehold.co/600x400?text=${encodeURIComponent(prompt)}`;
+
+      image.src = placeholderImage;
+      image.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
