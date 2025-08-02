@@ -1,152 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brainrot Image Generator</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brainboom X</title>
+  <style>
     body {
-      font-family: 'Rubik', sans-serif;
-      background: linear-gradient(to right, #ffe6e6, #e6f2ff);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      height: 100vh;
       margin: 0;
-      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #fdfbfb, #ebedee);
+      color: #333;
       overflow-x: hidden;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      color: #333;
-      animation: fadeInDown 1s ease-out;
-    }
-
-    h2 {
-      font-size: 1.2rem;
-      font-weight: normal;
-      color: #444;
-      margin-top: -10px;
-      margin-bottom: 20px;
-    }
-
-    p.instructions {
-      background-color: #fff8dc;
-      padding: 10px 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      margin-bottom: 15px;
-      max-width: 600px;
+    header {
       text-align: center;
-      font-size: 1rem;
+      padding: 2rem 1rem 1rem;
+      animation: fadeIn 2s ease;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #666;
+      margin: 0;
     }
 
     .container {
       display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      gap: 20px;
-      width: 100%;
-      max-width: 1200px;
+      flex-direction: column;
+      padding: 1rem;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: flex-start;
+      }
     }
 
     iframe {
-      width: 60%;
-      height: 450px;
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+      width: 100%;
+      max-width: 400px;
+      height: 300px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1.5s ease;
     }
 
-    .writing-area {
-      width: 40%;
+    .whiteboard {
+      flex: 1;
       display: flex;
       flex-direction: column;
+      gap: 0.8rem;
     }
 
     textarea {
       width: 100%;
-      height: 200px;
-      border-radius: 12px;
-      padding: 15px;
+      height: 150px;
+      padding: 1rem;
       font-size: 1rem;
-      resize: none;
-      border: 1px solid #ccc;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      resize: vertical;
     }
 
-    select, button.generate-task {
-      padding: 10px;
-      margin-top: 10px;
+    select,
+    button {
       font-size: 1rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      background-color: #f5f5f5;
-    }
-
-    button.generate-task {
-      background-color: #007BFF;
-      color: white;
+      padding: 0.6rem 1rem;
+      border-radius: 10px;
       border: none;
-      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
     }
 
-    button.generate-task:hover {
-      background-color: #0056b3;
+    button:hover,
+    select:hover {
+      cursor: pointer;
+      transform: scale(1.02);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
-<body>
-  <h1>🧠 Brainrot Image Generator</h1>
-  <h2>Where brain meets creativity!</h2>
 
-  <p class="instructions">Welcome! Look at the picture. Then write a sentence about it! Let’s use words to describe it.</p>
+<body>
+  <header>
+    <h1>Brainboom X</h1>
+    <p>Where brain meets creativity!</p>
+  </header>
 
   <div class="container">
-    <!-- Embedded Mage.space image generator -->
-    <iframe src="https://www.mage.space" allowfullscreen></iframe>
+    <iframe src="https://www.mage.space" title="Mage Space"></iframe>
 
-    <!-- Writing/whiteboard area -->
-    <div class="writing-area">
-      <label for="taskType">Choose your writing challenge:</label>
-      <select id="taskType">
-        <option value="simple">Make a simple sentence</option>
-        <option value="adjective">Use two adjectives</option>
-        <option value="preposition">Use one preposition</option>
-        <option value="feeling">Describe how it makes you feel</option>
+    <div class="whiteboard">
+      <label for="instruction">What kind of sentence should you write?</label>
+      <select id="instruction">
+        <option value="simple">Write a simple sentence.</option>
+        <option value="adjective">Use 2 adjectives in your sentence.</option>
+        <option value="preposition">Use 1 preposition in your sentence.</option>
+        <option value="feeling">Write about how the picture makes you feel.</option>
       </select>
 
-      <button class="generate-task" onclick="randomizeTask()">🎲 Random Task</button>
-
+      <button onclick="randomizeInstruction(); playClick()">🎲 Give Me Random Instruction</button>
       <textarea placeholder="Write your sentence here..."></textarea>
     </div>
   </div>
 
-  <!-- Audio for interaction -->
-  <audio id="click-sound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+  <audio id="clickSound">
+    <source src="https://www.myinstants.com/media/sounds/mouse-click.mp3" type="audio/mpeg" />
+  </audio>
 
   <script>
-    const clickSound = document.getElementById('click-sound');
+    const instructions = [
+      "Write a simple sentence.",
+      "Use 2 adjectives in your sentence.",
+      "Use 1 preposition in your sentence.",
+      "Write about how the picture makes you feel."
+    ];
 
-    document.addEventListener('click', () => {
-      clickSound.play();
-    });
+    function randomizeInstruction() {
+      const random = Math.floor(Math.random() * instructions.length);
+      document.getElementById("instruction").value =
+        document.getElementById("instruction").options[random].value;
+    }
 
-    function randomizeTask() {
-      const taskTypes = [
-        'Make a simple sentence',
-        'Use two adjectives',
-        'Use one preposition',
-        'Describe how it makes you feel'
-      ];
-      const randomIndex = Math.floor(Math.random() * taskTypes.length);
-      const taskDropdown = document.getElementById('taskType');
-      taskDropdown.selectedIndex = randomIndex;
+    function playClick() {
+      document.getElementById("clickSound").play();
     }
   </script>
 </body>
+
 </html>
